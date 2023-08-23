@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package daniel.brian.fooddeliveryapp
+package daniel.brian.fooddeliveryapp.activities
 
 import android.content.Intent
 import android.graphics.Color
@@ -21,7 +21,7 @@ class StartActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.getStarted.setOnClickListener{
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 

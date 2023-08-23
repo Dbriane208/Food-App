@@ -1,13 +1,15 @@
 @file:Suppress("DEPRECATION")
 
-package daniel.brian.fooddeliveryapp
+package daniel.brian.fooddeliveryapp.activities
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.Navigation
+import androidx.navigation.ui.NavigationUI
+import daniel.brian.fooddeliveryapp.R
 import daniel.brian.fooddeliveryapp.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -19,5 +21,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        val bottomNavigationView = binding.bottomNavigation
+        val navController = Navigation.findNavController(this, R.id.navHostFragment)
+
+        NavigationUI.setupWithNavController(bottomNavigationView,navController)
     }
 }
