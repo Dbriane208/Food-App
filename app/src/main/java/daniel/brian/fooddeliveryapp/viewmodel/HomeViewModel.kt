@@ -25,12 +25,12 @@ class HomeViewModel: ViewModel() {
                     return
                 }
             }
-
             override fun onFailure(call: Call<MealList>, t: Throwable) {
                 Log.d("HomeFragment",t.message.toString())
             }
         })
     }
+    
     fun observeRandomMealLivedata() : LiveData<Meal>{
         return randomMealLiveData
     }
