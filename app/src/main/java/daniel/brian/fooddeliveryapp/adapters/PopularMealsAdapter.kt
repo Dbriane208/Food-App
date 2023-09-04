@@ -11,7 +11,7 @@ import daniel.brian.fooddeliveryapp.databinding.PopularMealsViewBinding
 import daniel.brian.fooddeliveryapp.pojo.CategoryMeals
 
 
-class PopularMealsAdapter() : RecyclerView.Adapter<PopularMealsAdapter.popularMealViewHolder>() {
+class PopularMealsAdapter : RecyclerView.Adapter<PopularMealsAdapter.popularMealViewHolder>() {
     private var mealsList : ArrayList<CategoryMeals> = ArrayList()
     lateinit var onItemClick : ((CategoryMeals)-> Unit)
 
@@ -34,6 +34,9 @@ class PopularMealsAdapter() : RecyclerView.Adapter<PopularMealsAdapter.popularMe
          Glide.with(holder.itemView)
              .load(mealsList[position].strMealThumb)
              .into(holder.binding.popularMeal)
+
+         val meal = mealsList[position]
+         holder.binding.popularMealName.text = meal.strMeal
 
          holder.itemView.setOnClickListener{
            onItemClick.invoke(mealsList[position])
