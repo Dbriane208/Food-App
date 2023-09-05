@@ -1,24 +1,37 @@
 package daniel.brian.fooddeliveryapp.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import daniel.brian.fooddeliveryapp.databinding.ActivityMealCategoryBinding
+import com.bumptech.glide.Glide
+import daniel.brian.fooddeliveryapp.databinding.CategoryrecyclervieiwBinding
+import daniel.brian.fooddeliveryapp.pojo.Category
 
-class CategoryMealsAdapter() : RecyclerView.Adapter<CategoryMealsAdapter.CategoryMealsViewHolder>() {
+class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryMealsViewHolder>() {
+     private var categoryMealsList : ArrayList<Category> = ArrayList()
 
-
-    inner class CategoryMealsViewHolder(val binding: ActivityMealCategoryBinding) : RecyclerView.ViewHolder(binding.root)
+     @SuppressLint("NotifyDataSetChanged")
+     fun setCategoryMeals(categoryMealsList : ArrayList<Category>){
+         this.categoryMealsList = categoryMealsList
+         notifyDataSetChanged()
+     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryMealsViewHolder {
-        return CategoryMealsViewHolder(ActivityMealCategoryBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return CategoryMealsViewHolder(CategoryrecyclervieiwBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return categoryMealsList.size
     }
 
     override fun onBindViewHolder(holder: CategoryMealsViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        Glide.with(holder.itemView)
+            .load(categoryMealsList[position].strCategoryThumb)
+            .into(holder.binding.imgCategoryMeal)
+
+        val meal = categoryMealsList[position]
+        holder.binding.tvCategoryMeal.text = meal.strCategory
     }
+    inner class CategoryMealsViewHolder(val binding: CategoryrecyclervieiwBinding) : RecyclerView.ViewHolder(binding.root)
 }
