@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import daniel.brian.fooddeliveryapp.activities.MealCategory
 import daniel.brian.fooddeliveryapp.adapters.PopularMealsAdapter
 import daniel.brian.fooddeliveryapp.databinding.FragmentHomeBinding
-import daniel.brian.fooddeliveryapp.pojo.CategoryMeals
+import daniel.brian.fooddeliveryapp.pojo.MealsByCategoryList
 import daniel.brian.fooddeliveryapp.pojo.Meal
 import daniel.brian.fooddeliveryapp.viewmodel.HomeViewModel
 
@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
     private fun observePopularItemsLiveData() {
         homeMvvm.observePopularItemsLiveData().observe(viewLifecycleOwner
         ) { mealList ->
-            popularItemsAdapter.setMeals(mealsList = mealList as ArrayList<CategoryMeals>)
+            popularItemsAdapter.setMeals(mealsList = mealList as ArrayList<MealsByCategoryList>)
         }
     }
 

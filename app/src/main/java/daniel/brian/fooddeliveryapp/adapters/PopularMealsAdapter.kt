@@ -8,15 +8,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import daniel.brian.fooddeliveryapp.databinding.PopularMealsViewBinding
-import daniel.brian.fooddeliveryapp.pojo.CategoryMeals
+import daniel.brian.fooddeliveryapp.pojo.MealsByCategoryList
 
 
 class PopularMealsAdapter : RecyclerView.Adapter<PopularMealsAdapter.popularMealViewHolder>() {
-    private var mealsList : ArrayList<CategoryMeals> = ArrayList()
-    lateinit var onItemClick : ((CategoryMeals)-> Unit)
+    private var mealsList : ArrayList<MealsByCategoryList> = ArrayList()
+    lateinit var onItemClick : ((MealsByCategoryList)-> Unit)
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setMeals(mealsList:ArrayList<CategoryMeals>){
+    fun setMeals(mealsList:ArrayList<MealsByCategoryList>){
         this.mealsList = mealsList
         notifyDataSetChanged()
     }

@@ -1,6 +1,6 @@
 package daniel.brian.fooddeliveryapp.pojo
 
-data class CategoryMeals(
+data class MealsByCategoryList(
     val idMeal: String,
     val strMeal: String,
     val strMealThumb: String
