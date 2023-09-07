@@ -10,6 +10,7 @@ import daniel.brian.fooddeliveryapp.pojo.Category
 
 class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryMealsViewHolder>() {
      private var categoryMealsList : ArrayList<Category> = ArrayList()
+     var onItemClick : ((Category) -> Unit)? = null
 
      @SuppressLint("NotifyDataSetChanged")
      fun setCategoryMeals(categoryMealsList : ArrayList<Category>){
@@ -32,6 +33,10 @@ class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryM
 
         val meal = categoryMealsList[position]
         holder.binding.tvCategoryMeal.text = meal.strCategory
+
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(categoryMealsList[position])
+        }
     }
     inner class CategoryMealsViewHolder(val binding: CategoryrecyclervieiwBinding) : RecyclerView.ViewHolder(binding.root)
 }

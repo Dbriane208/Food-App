@@ -42,6 +42,8 @@ class HomeViewModel: ViewModel() {
             override fun onResponse(call: Call<MealsByCategory>, response: Response<MealsByCategory>) {
                 if(response.body() != null){
                    popularItemsLiveData.value = response.body()!!.meals
+                }else{
+                    return
                 }
             }
 
@@ -53,10 +55,12 @@ class HomeViewModel: ViewModel() {
     }
 
     fun getMealsByCategory(){
-        RetrofitInstance.api.getMealsByCategory().enqueue(object : Callback<CategoryList>{
+        RetrofitInstance.api.getCategories().enqueue(object : Callback<CategoryList>{
             override fun onResponse(call: Call<CategoryList>, response: Response<CategoryList>) {
                 if (response.body() != null){
                    categoryMealsLiveData.value = response.body()!!.categories
+                }else{
+                    return
                 }
             }
 
@@ -66,6 +70,7 @@ class HomeViewModel: ViewModel() {
 
         })
     }
+
     fun observeRandomMealLivedata() : LiveData<Meal>{
         return randomMealLiveData
     }
