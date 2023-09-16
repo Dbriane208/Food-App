@@ -28,7 +28,7 @@ class CategoryListsAdapter : RecyclerView.Adapter<CategoryListsAdapter.CategoryL
     }
 
     override fun onBindViewHolder(holder: CategoryListViewHolder, position: Int) {
-        Glide.with(holder.itemView).load(mealList[position].strMealThumb).into(holder.binding.imgCategoryMeal)
+        Glide.with(holder.itemView).load(mealList[position].strMealThumb).into(holder.binding.CategoryMeals)
         holder.binding.tvCategoryMeal.text = mealList[position].strMeal
     }
 

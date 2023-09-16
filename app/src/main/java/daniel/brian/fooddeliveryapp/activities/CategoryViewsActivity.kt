@@ -33,6 +33,7 @@ class CategoryViewsActivity : AppCompatActivity() {
 
     private fun prepareRecyclerView() {
         categoryListsAdapter = CategoryListsAdapter()
+
         binding.CategoryViewsHolder.apply {
             layoutManager = GridLayoutManager(context,4,GridLayoutManager.VERTICAL,false)
             adapter = categoryListsAdapter

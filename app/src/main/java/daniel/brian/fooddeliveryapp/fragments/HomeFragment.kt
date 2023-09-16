@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import daniel.brian.fooddeliveryapp.activities.CategoryViewsActivity
 import daniel.brian.fooddeliveryapp.activities.MealCategory
+import daniel.brian.fooddeliveryapp.adapters.CategoryListsAdapter
 import daniel.brian.fooddeliveryapp.adapters.CategoryMealsAdapter
 import daniel.brian.fooddeliveryapp.adapters.PopularMealsAdapter
 import daniel.brian.fooddeliveryapp.databinding.FragmentHomeBinding
@@ -32,11 +33,11 @@ class HomeFragment : Fragment() {
      const val MEAL_NAME = "daniel.brian.fooddeliveryapp.fragments.nameMeal"
      const val MEAL_THUMB = "daniel.brian.fooddeliveryapp.fragments.thumbNail"
      const val CATEGORY_NAME = "daniel.brian.fooddeliveryapp.fragments.categoryName"
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
       homeMvvm = ViewModelProvider(this)[HomeViewModel::class.java]
 
       popularItemsAdapter = PopularMealsAdapter()
@@ -68,6 +69,7 @@ class HomeFragment : Fragment() {
         homeMvvm.getMealsByCategory()
         observeCategoryMealsLiveData()
         onCategoryClick()
+
     }
 
     private fun onCategoryClick() {

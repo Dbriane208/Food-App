@@ -12,6 +12,7 @@ class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryM
      private var categoryMealsList : ArrayList<Category> = ArrayList()
      var onItemClick : ((Category) -> Unit)? = null
 
+    //allows the meals to be accessed outside of the class
      @SuppressLint("NotifyDataSetChanged")
      fun setCategoryMeals(categoryMealsList : ArrayList<Category>){
          this.categoryMealsList = categoryMealsList

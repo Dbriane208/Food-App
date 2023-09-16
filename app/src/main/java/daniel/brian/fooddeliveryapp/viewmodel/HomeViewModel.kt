@@ -20,9 +20,13 @@ class HomeViewModel: ViewModel() {
     private var popularItemsLiveData = MutableLiveData<List<MealsByCategoryList>>()
     private var categoryMealsLiveData = MutableLiveData<List<Category>>()
 
+
+    //makes asynchronous network request to retrieve a random meal using retrofit
     fun getRandomMeal (){
+        //makes the network call
         RetrofitInstance.api.getRandomMeal().enqueue(object : Callback<MealList> {
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
+                //retrieves the first meal of the meal list and assigns it to randomLiveData.value
                 if (response.body() != null){
                     val randomMeal : Meal = response.body()!!.meals[0]
                     randomMealLiveData.value = randomMeal
@@ -46,7 +50,6 @@ class HomeViewModel: ViewModel() {
                     return
                 }
             }
-
             override fun onFailure(call: Call<MealsByCategory>, t: Throwable) {
                 Log.d("HomeFragment",t.message.toString())
             }
@@ -71,6 +74,7 @@ class HomeViewModel: ViewModel() {
         })
     }
 
+    //allows the external UI controllers to access the randomMealLiveData
     fun observeRandomMealLivedata() : LiveData<Meal>{
         return randomMealLiveData
     }

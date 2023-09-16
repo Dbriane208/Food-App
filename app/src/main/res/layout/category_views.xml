@@ -21,7 +21,7 @@
             tools:ignore="VisualLintBounds">
 
             <ImageView
-                android:id="@+id/imgCategoryMeal"
+                android:id="@+id/CategoryMeals"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
