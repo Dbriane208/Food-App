@@ -1,5 +1,6 @@
 package daniel.brian.fooddeliveryapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,14 @@ class CategoryViewsActivity : AppCompatActivity() {
     private lateinit var categoriesListViewModel: CategoriesListViewModel
     private lateinit var categoryListsAdapter: CategoryListsAdapter
 
+    //this will help in passing the meal id and name of the meal that we will click to the next activity
+    companion object{
+        const val MEAL_ID = "daniel.brian.fooddeliveryapp.fragments.idMeal"
+        const val MEAL_NAME = "daniel.brian.fooddeliveryapp.fragments.nameMeal"
+        const val MEAL_THUMB = "daniel.brian.fooddeliveryapp.fragments.thumbNail"
+        const val CATEGORY_NAME = "daniel.brian.fooddeliveryapp.fragments.categoryName"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCategoryViewsBinding.inflate(layoutInflater)
@@ -21,6 +30,7 @@ class CategoryViewsActivity : AppCompatActivity() {
         setContentView(view)
 
         prepareRecyclerView()
+        categoryListItemOnclick()
 
         categoriesListViewModel = ViewModelProvider(this)[CategoriesListViewModel::class.java]
 
@@ -28,6 +38,16 @@ class CategoryViewsActivity : AppCompatActivity() {
 
         categoriesListViewModel.observeMealsLiveData().observe(this) { mealsList ->
                 categoryListsAdapter.setMealsList(mealsList)
+        }
+    }
+
+    private fun categoryListItemOnclick() {
+        categoryListsAdapter.onItemClick = { meal ->
+            val intent = Intent(this,MealCategory::class.java)
+            intent.putExtra(MEAL_ID,meal.idMeal)
+            intent.putExtra(MEAL_NAME,meal.strMeal)
+            intent.putExtra(MEAL_THUMB,meal.strMealThumb)
+            startActivity(intent)
         }
     }
 

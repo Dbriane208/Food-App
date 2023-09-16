@@ -13,6 +13,7 @@ import daniel.brian.fooddeliveryapp.pojo.MealsByCategoryList
 
 class PopularMealsAdapter : RecyclerView.Adapter<PopularMealsAdapter.popularMealViewHolder>() {
     private var mealsList : ArrayList<MealsByCategoryList> = ArrayList()
+    //It declares a method property onItemClick which returns a unit by taking a single argument of the MealsCategoryList
     lateinit var onItemClick : ((MealsByCategoryList)-> Unit)
 
     @SuppressLint("NotifyDataSetChanged")
@@ -38,8 +39,8 @@ class PopularMealsAdapter : RecyclerView.Adapter<PopularMealsAdapter.popularMeal
          val meal = mealsList[position]
          holder.binding.popularMealName.text = meal.strMeal
 
-         holder.itemView.setOnClickListener{
-           onItemClick.invoke(mealsList[position])
+         holder.itemView.setOnClickListener{ // holder represents a single item in the list
+           onItemClick.invoke(mealsList[position]) // It returns an invoked unit at the position on the recyclerview
          }
     }
 

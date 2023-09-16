@@ -10,6 +10,7 @@ import daniel.brian.fooddeliveryapp.pojo.MealsByCategoryList
 
 class CategoryListsAdapter : RecyclerView.Adapter<CategoryListsAdapter.CategoryListViewHolder>() {
      private var mealList = ArrayList<MealsByCategoryList>()
+     lateinit var onItemClick : ((MealsByCategoryList) -> Unit)
 
     @SuppressLint("NotifyDataSetChanged")
     fun setMealsList(mealList : List<MealsByCategoryList>){
@@ -30,6 +31,10 @@ class CategoryListsAdapter : RecyclerView.Adapter<CategoryListsAdapter.CategoryL
     override fun onBindViewHolder(holder: CategoryListViewHolder, position: Int) {
         Glide.with(holder.itemView).load(mealList[position].strMealThumb).into(holder.binding.CategoryMeals)
         holder.binding.tvCategoryMeal.text = mealList[position].strMeal
+
+        holder.itemView.setOnClickListener {
+            onItemClick.invoke(mealList[position])
+        }
     }
 
 
