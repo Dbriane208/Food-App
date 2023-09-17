@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import daniel.brian.fooddeliveryapp.databinding.PopularMealsViewBinding
 import daniel.brian.fooddeliveryapp.pojo.MealsByCategoryList
+import daniel.brian.fooddeliveryapp.util.shortenName
 
 
 class PopularMealsAdapter : RecyclerView.Adapter<PopularMealsAdapter.popularMealViewHolder>() {
@@ -37,7 +38,7 @@ class PopularMealsAdapter : RecyclerView.Adapter<PopularMealsAdapter.popularMeal
              .into(holder.binding.popularMeal)
 
          val meal = mealsList[position]
-         holder.binding.popularMealName.text = meal.strMeal
+         holder.binding.popularMealName.text = meal.strMeal.shortenName()
 
          holder.itemView.setOnClickListener{ // holder represents a single item in the list
            onItemClick.invoke(mealsList[position]) // It returns an invoked unit at the position on the recyclerview

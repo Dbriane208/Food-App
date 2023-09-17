@@ -1,16 +1,28 @@
 package daniel.brian.fooddeliveryapp.retrofit
 
+import daniel.brian.fooddeliveryapp.util.Constants.DRINKS_BASE_URL
+import daniel.brian.fooddeliveryapp.util.Constants.MEAL_BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 object RetrofitInstance {
 
-    val api :MealApi by lazy {
+    val mealApi : MealApi by lazy {
         Retrofit.Builder()
-            .baseUrl("https://www.themealdb.com/api/json/v1/1/")
+            .baseUrl(MEAL_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(MealApi::class.java)
     }
+
+    val drinkApi : MealApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(DRINKS_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MealApi::class.java)
+    }
+
 
 }

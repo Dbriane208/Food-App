@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +14,7 @@ import daniel.brian.fooddeliveryapp.adapters.OrdinaryDrinksAdapter
 import daniel.brian.fooddeliveryapp.databinding.ActivityMealCategoryBinding
 import daniel.brian.fooddeliveryapp.fragments.HomeFragment
 import daniel.brian.fooddeliveryapp.pojo.Drink
+import daniel.brian.fooddeliveryapp.util.shortenName
 import daniel.brian.fooddeliveryapp.viewmodel.DrinksViewModel
 
 
@@ -72,7 +72,7 @@ class MealCategory : AppCompatActivity() {
     private fun getMealInformation() {
          val intent = intent
         mealId = intent.getStringExtra(HomeFragment.MEAL_ID)!!
-        mealName = intent.getStringExtra(HomeFragment.MEAL_NAME)!!
+        mealName = intent.getStringExtra(HomeFragment.MEAL_NAME)!!.shortenName()
         mealThumb = intent.getStringExtra(HomeFragment.MEAL_THUMB)!!
     }
 

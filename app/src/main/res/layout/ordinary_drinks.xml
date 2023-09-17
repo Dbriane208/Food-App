@@ -6,6 +6,7 @@
     android:layout_height="90dp"
     app:cardCornerRadius="10dp"
     android:elevation="5dp"
+    android:backgroundTint="#D9D9D9"
     app:cardUseCompatPadding="true"
     tools:ignore="VisualLintBounds"
     app:layout_constraintTop_toTopOf="parent"
@@ -15,9 +16,19 @@
         android:id="@+id/ordinaryDrinks"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:padding="5dp"
         android:scaleType="centerCrop"
         android:layout_gravity="center"
         android:src="@drawable/food_plate"
         android:importantForAccessibility="no"/>
+
+    <ImageView
+        android:id="@+id/addDrink"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/add_button"
+        android:layout_gravity="bottom|right"
+        android:importantForAccessibility="no"
+        tools:ignore="RtlHardcoded" />
 
 </androidx.cardview.widget.CardView>

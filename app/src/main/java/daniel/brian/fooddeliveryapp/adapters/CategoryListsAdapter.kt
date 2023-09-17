@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import daniel.brian.fooddeliveryapp.databinding.CategoryViewsBinding
 import daniel.brian.fooddeliveryapp.pojo.MealsByCategoryList
+import daniel.brian.fooddeliveryapp.util.shortenName
 
 class CategoryListsAdapter : RecyclerView.Adapter<CategoryListsAdapter.CategoryListViewHolder>() {
      private var mealList = ArrayList<MealsByCategoryList>()
@@ -30,7 +31,7 @@ class CategoryListsAdapter : RecyclerView.Adapter<CategoryListsAdapter.CategoryL
 
     override fun onBindViewHolder(holder: CategoryListViewHolder, position: Int) {
         Glide.with(holder.itemView).load(mealList[position].strMealThumb).into(holder.binding.CategoryMeals)
-        holder.binding.tvCategoryMeal.text = mealList[position].strMeal
+        holder.binding.tvCategoryMeal.text = mealList[position].strMeal.shortenName()
 
         holder.itemView.setOnClickListener {
             onItemClick.invoke(mealList[position])
