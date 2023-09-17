@@ -23,7 +23,7 @@ class HomeViewModel: ViewModel() {
 
     //makes asynchronous network request to retrieve a random meal using retrofit
     fun getRandomMeal (){
-        //makes the network call
+        //Callback is used to asynchronously handle requests after a network call
         RetrofitInstance.mealApi.getRandomMeal().enqueue(object : Callback<MealList> {
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
                 //retrieves the first meal of the meal list and assigns it to randomLiveData.value
