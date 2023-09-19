@@ -4,6 +4,6 @@ package daniel.brian.fooddeliveryapp.util
 fun String.shortenName():String{
     //it takes the original mealName and splits it into an array of strings.
     // It filters the substrings that are equal to "and" then combines the first two substrings using joinToString method.
-    val mealNameArray = split(" ").filter { it != "and" }.take(2)
+    val mealNameArray = split(" ").filter { it != "and" && it != "&"}.take(2)
     return mealNameArray.joinToString(" ")
 }

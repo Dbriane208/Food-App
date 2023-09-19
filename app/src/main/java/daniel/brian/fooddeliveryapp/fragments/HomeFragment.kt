@@ -20,7 +20,6 @@ import daniel.brian.fooddeliveryapp.pojo.MealsByCategoryList
 import daniel.brian.fooddeliveryapp.pojo.Meal
 import daniel.brian.fooddeliveryapp.viewmodel.HomeViewModel
 
-
 class HomeFragment : Fragment() {
     private lateinit var popularItemsAdapter : PopularMealsAdapter
     private lateinit var categoryMealsAdapter : CategoryMealsAdapter
