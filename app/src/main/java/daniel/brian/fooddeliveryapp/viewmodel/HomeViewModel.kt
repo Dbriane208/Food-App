@@ -3,6 +3,7 @@ package daniel.brian.fooddeliveryapp.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import daniel.brian.fooddeliveryapp.db.MealDataBase
 import daniel.brian.fooddeliveryapp.pojo.Category
 import daniel.brian.fooddeliveryapp.pojo.CategoryList
 import daniel.brian.fooddeliveryapp.pojo.MealsByCategory
@@ -15,10 +16,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel(
+   private val mealDataBase: MealDataBase
+): ViewModel() {
     private var randomMealLiveData = MutableLiveData<Meal>()
     private var popularItemsLiveData = MutableLiveData<List<MealsByCategoryList>>()
     private var categoryMealsLiveData = MutableLiveData<List<Category>>()
+    private var favoriteMealsLiveData = mealDataBase.mealDao().getAllMeals()
 
 
     //makes asynchronous network request to retrieve a random meal using retrofit
@@ -84,4 +88,8 @@ class HomeViewModel: ViewModel() {
      fun observeCategoryMealsLiveData(): MutableLiveData<List<Category>> {
          return categoryMealsLiveData
      }
+
+    fun observeFavoritesMealsLiveData(): LiveData<List<Meal>> {
+        return favoriteMealsLiveData
+    }
 }

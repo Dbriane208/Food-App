@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import daniel.brian.fooddeliveryapp.activities.CategoryViewsActivity
+import daniel.brian.fooddeliveryapp.activities.MainActivity
 import daniel.brian.fooddeliveryapp.activities.MealCategory
-import daniel.brian.fooddeliveryapp.adapters.CategoryListsAdapter
 import daniel.brian.fooddeliveryapp.adapters.CategoryMealsAdapter
 import daniel.brian.fooddeliveryapp.adapters.PopularMealsAdapter
 import daniel.brian.fooddeliveryapp.databinding.FragmentHomeBinding
@@ -37,7 +36,8 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-      homeMvvm = ViewModelProvider(this)[HomeViewModel::class.java]
+      //casting the viewModel from our main activity
+      homeMvvm = (activity as MainActivity).viewModel
 
       popularItemsAdapter = PopularMealsAdapter()
       categoryMealsAdapter = CategoryMealsAdapter()

@@ -4,7 +4,6 @@ import daniel.brian.fooddeliveryapp.util.Constants.DRINKS_BASE_URL
 import daniel.brian.fooddeliveryapp.util.Constants.MEAL_BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 object RetrofitInstance {
 
