@@ -11,36 +11,41 @@ import daniel.brian.fooddeliveryapp.adapters.FavoriteMealsAdapter
 import daniel.brian.fooddeliveryapp.databinding.FragmentFavoritesBinding
 import daniel.brian.fooddeliveryapp.viewmodel.HomeViewModel
 
-
 class FavoritesFragment : Fragment() {
-  private lateinit var binding: FragmentFavoritesBinding
-  private lateinit var homeMvvm : HomeViewModel
-  private lateinit var favoriteMealsAdapter : FavoriteMealsAdapter
+    private lateinit var binding: FragmentFavoritesBinding
+    private lateinit var homeMvvm: HomeViewModel
+    private lateinit var favoriteMealsAdapter: FavoriteMealsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-         homeMvvm = (activity as MainActivity).viewModel
+        homeMvvm = (activity as MainActivity).viewModel
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentFavoritesBinding.inflate(inflater)
         return binding.root
     }
 
+    fun onItemDelete() {
+        favoriteMealsAdapter
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         observeFavoritesMeals()
         prepareRecyclerView()
     }
 
     private fun prepareRecyclerView() {
-        favoriteMealsAdapter = FavoriteMealsAdapter()
+        favoriteMealsAdapter = FavoriteMealsAdapter { meal ->
+            homeMvvm.deleteMeal(meal)
+        }
         binding.mealFavoritesRV.apply {
-            layoutManager = GridLayoutManager(context,3,GridLayoutManager.VERTICAL,false)
+            layoutManager = GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
             adapter = favoriteMealsAdapter
         }
     }
@@ -50,5 +55,4 @@ class FavoritesFragment : Fragment() {
             favoriteMealsAdapter.differ.submitList(meals)
         }
     }
-
 }

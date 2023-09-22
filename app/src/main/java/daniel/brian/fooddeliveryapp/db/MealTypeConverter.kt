@@ -6,16 +6,18 @@ import androidx.room.TypeConverters
 @TypeConverters
 class MealTypeConverter {
     @TypeConverter
-    fun fromAnyToString(attribute : Any?) : String{
-        if (attribute == null)
+    fun fromAnyToString(attribute: Any?): String {
+        if (attribute == null) {
             return ""
-    return attribute as String
+        }
+        return attribute as String
     }
 
     @TypeConverter
-    fun fromStringToAny(attribute: Any?) : Any{
-        if (attribute == null)
-            return  ""
+    fun fromStringToAny(attribute: Any?): Any {
+        if (attribute == null) {
+            return ""
+        }
         return attribute
     }
 }

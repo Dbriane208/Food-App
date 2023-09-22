@@ -7,20 +7,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import daniel.brian.fooddeliveryapp.databinding.CategoryrecyclervieiwBinding
 import daniel.brian.fooddeliveryapp.pojo.Category
+import daniel.brian.fooddeliveryapp.util.shortenName
 
 class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryMealsViewHolder>() {
-     private var categoryMealsList : ArrayList<Category> = ArrayList()
-     var onItemClick : ((Category) -> Unit)? = null
+    private var categoryMealsList: ArrayList<Category> = ArrayList()
+    var onItemClick: ((Category) -> Unit)? = null
 
-    //allows the meals to be accessed outside of the class
-     @SuppressLint("NotifyDataSetChanged")
-     fun setCategoryMeals(categoryMealsList : ArrayList<Category>){
-         this.categoryMealsList = categoryMealsList
-         notifyDataSetChanged()
-     }
+    // allows the meals to be accessed outside of the class
+    @SuppressLint("NotifyDataSetChanged")
+    fun setCategoryMeals(categoryMealsList: ArrayList<Category>) {
+        this.categoryMealsList = categoryMealsList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryMealsViewHolder {
-        return CategoryMealsViewHolder(CategoryrecyclervieiwBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return CategoryMealsViewHolder(
+            CategoryrecyclervieiwBinding.inflate(
+                LayoutInflater.from(
+                    parent.context,
+                ),
+                parent,
+                false,
+            ),
+        )
     }
 
     override fun getItemCount(): Int {
@@ -33,11 +42,13 @@ class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryM
             .into(holder.binding.imgCategoryMeal)
 
         val meal = categoryMealsList[position]
-        holder.binding.tvCategoryMeal.text = meal.strCategory
+        holder.binding.tvCategoryMeal.text = meal.strCategory.shortenName()
 
         holder.itemView.setOnClickListener {
             onItemClick!!.invoke(categoryMealsList[position])
         }
     }
-    inner class CategoryMealsViewHolder(val binding: CategoryrecyclervieiwBinding) : RecyclerView.ViewHolder(binding.root)
+
+    inner class CategoryMealsViewHolder(val binding: CategoryrecyclervieiwBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }

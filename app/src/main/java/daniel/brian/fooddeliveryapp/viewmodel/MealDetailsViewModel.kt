@@ -15,25 +15,24 @@ import timber.log.Timber
 
 class MealDetailsViewModel(
     // passing the argument here allows : dependency injection i.e allows this viewModel to have outside dependencies
-    private val mealDataBase: MealDataBase
+    private val mealDataBase: MealDataBase,
 ) : ViewModel() {
     private var mealDetailsLiveData = MutableLiveData<Meal>()
 
-    fun getMealDetails() {
-        RetrofitInstance.mealApi.getMealDetails("idMeal").enqueue(object : Callback<MealList>{
+    fun getMealDetails(id: String) {
+        RetrofitInstance.mealApi.getMealDetails(id).enqueue(object : Callback<MealList> {
             override fun onResponse(
                 call: Call<MealList>,
-                response: Response<MealList>
+                response: Response<MealList>,
             ) {
-                if (response.body() != null){
+                if (response.body() != null) {
                     mealDetailsLiveData.value = response.body()!!.meals[0]
                 }
             }
 
             override fun onFailure(call: Call<MealList>, t: Throwable) {
-                Timber.d("MealDetails",t.message.toString())
+                Timber.d("MealDetails", t.message.toString())
             }
-
         })
     }
 
@@ -41,15 +40,16 @@ class MealDetailsViewModel(
         return mealDetailsLiveData
     }
 
-    //coroutine viewModelScope allows the viewModel to automatically close when not in use
-    fun insertMeal(meal : Meal){
+    // coroutine viewModelScope allows the viewModel to automatically close when not in use
+    fun insertMeal(meal: Meal) {
         viewModelScope.launch {
-            mealDataBase.mealDao().upsert(meal)
+            Timber.d(meal.toString())
+            mealDataBase.mealDao().insert(meal)
         }
     }
 
-    //viewModelScope.launch handles the tasks of deletion or insertion asynchronously
-    fun deleteMeal(meal : Meal){
+    // viewModelScope.launch handles the tasks of deletion or insertion asynchronously
+    fun deleteMeal(meal: Meal) {
         viewModelScope.launch {
             mealDataBase.mealDao().delete(meal)
         }

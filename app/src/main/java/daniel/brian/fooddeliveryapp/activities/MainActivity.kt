@@ -3,9 +3,9 @@
 package daniel.brian.fooddeliveryapp.activities
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -16,13 +16,13 @@ import daniel.brian.fooddeliveryapp.viewmodel.HomeViewModel
 import daniel.brian.fooddeliveryapp.viewmodel.HomeViewModelFactory
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
-    //We instantiate it from the main activity so that we can avoid having three instances of our HomeViewModel
-    val viewModel : HomeViewModel by lazy {
-          val mealDataBase = MealDataBase.getInstance(this)
-          val homeViewModelFactory = HomeViewModelFactory(mealDataBase)
-          ViewModelProvider(this,homeViewModelFactory)[HomeViewModel::class.java]
+    // We instantiate it from the main activity so that we can avoid having three instances of our HomeViewModel
+    val viewModel: HomeViewModel by lazy {
+        val mealDataBase = MealDataBase.getInstance(this)
+        val homeViewModelFactory = HomeViewModelFactory(mealDataBase)
+        ViewModelProvider(this, homeViewModelFactory)[HomeViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +36,6 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = binding.bottomNavigation
         val navController = Navigation.findNavController(this, R.id.navHostFragment)
 
-        NavigationUI.setupWithNavController(bottomNavigationView,navController)
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
     }
 }

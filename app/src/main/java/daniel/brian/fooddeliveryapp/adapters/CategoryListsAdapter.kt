@@ -10,23 +10,30 @@ import daniel.brian.fooddeliveryapp.pojo.MealsByCategoryList
 import daniel.brian.fooddeliveryapp.util.shortenName
 
 class CategoryListsAdapter : RecyclerView.Adapter<CategoryListsAdapter.CategoryListViewHolder>() {
-     private var mealList = ArrayList<MealsByCategoryList>()
-     lateinit var onItemClick : ((MealsByCategoryList) -> Unit)
+    private var mealList = ArrayList<MealsByCategoryList>()
+    lateinit var onItemClick: ((MealsByCategoryList) -> Unit)
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setMealsList(mealList : List<MealsByCategoryList>){
+    fun setMealsList(mealList: List<MealsByCategoryList>) {
         this.mealList = mealList as ArrayList<MealsByCategoryList>
         notifyDataSetChanged()
     }
 
-    inner class CategoryListViewHolder(val binding : CategoryViewsBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class CategoryListViewHolder(val binding: CategoryViewsBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryListViewHolder {
-        return CategoryListViewHolder(CategoryViewsBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return CategoryListViewHolder(
+            CategoryViewsBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false,
+            ),
+        )
     }
 
     override fun getItemCount(): Int {
-       return mealList.size
+        return mealList.size
     }
 
     override fun onBindViewHolder(holder: CategoryListViewHolder, position: Int) {
@@ -39,6 +46,4 @@ class CategoryListsAdapter : RecyclerView.Adapter<CategoryListsAdapter.CategoryL
             onItemClick.invoke(mealList[position])
         }
     }
-
-
 }

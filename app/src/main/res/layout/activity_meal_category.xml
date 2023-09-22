@@ -44,7 +44,8 @@
                 android:layout_marginStart="300dp"
                 android:layout_marginTop="42dp"
                 android:importantForAccessibility="no"
-                android:src="@drawable/favorite_meal"
+                android:src="@drawable/ic_favorites"
+                app:tint="@color/white"
                 app:layout_constraintStart_toEndOf="@id/mealName"
                 app:layout_constraintTop_toBottomOf="@id/mealPrice"
                 tools:ignore="ImageContrastCheck" />
@@ -71,7 +72,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="427dp"
-        android:elevation="10dp"
+        android:elevation="5dp"
         android:background="@drawable/mealcategorydescriptionholder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
