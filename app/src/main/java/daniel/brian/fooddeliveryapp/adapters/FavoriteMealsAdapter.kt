@@ -10,8 +10,9 @@ import daniel.brian.fooddeliveryapp.databinding.FavoritesCategoryViewsBinding
 import daniel.brian.fooddeliveryapp.pojo.Meal
 import daniel.brian.fooddeliveryapp.util.shortenName
 
-class FavoriteMealsAdapter() :
+class FavoriteMealsAdapter :
     RecyclerView.Adapter<FavoriteMealsAdapter.FavoriteMealsAdapterViewHolder>() {
+    lateinit var onFavoriteClick: ((Meal) -> Unit)
 
     inner class FavoriteMealsAdapterViewHolder(val binding: FavoritesCategoryViewsBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -56,7 +57,8 @@ class FavoriteMealsAdapter() :
             .load(meal.strMealThumb)
             .into(holder.binding.CategoryMeals)
         holder.binding.tvCategoryMeal.text = meal.strMeal?.shortenName()
-        holder.binding.CategoryMeals.setOnClickListener {
+        holder.itemView.setOnClickListener {
+            onFavoriteClick.invoke(meal)
         }
     }
 }
