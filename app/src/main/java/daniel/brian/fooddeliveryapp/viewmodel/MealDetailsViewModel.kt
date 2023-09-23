@@ -40,18 +40,9 @@ class MealDetailsViewModel(
         return mealDetailsLiveData
     }
 
-    // coroutine viewModelScope allows the viewModel to automatically close when not in use
     fun insertMeal(meal: Meal) {
         viewModelScope.launch {
-            Timber.d(meal.toString())
-            mealDataBase.mealDao().insert(meal)
-        }
-    }
-
-    // viewModelScope.launch handles the tasks of deletion or insertion asynchronously
-    fun deleteMeal(meal: Meal) {
-        viewModelScope.launch {
-            mealDataBase.mealDao().delete(meal)
+            mealDataBase.mealDao().upsert(meal)
         }
     }
 }

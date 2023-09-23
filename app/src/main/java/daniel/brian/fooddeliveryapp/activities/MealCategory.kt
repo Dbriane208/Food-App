@@ -112,7 +112,7 @@ class MealCategory : AppCompatActivity() {
             .load(mealThumb)
             .into(binding.imageMeal)
 
-        binding.mealName.text = mealName
+        binding.mealName.text = mealName.shortenName()
     }
 
     private fun getMealInformation() {

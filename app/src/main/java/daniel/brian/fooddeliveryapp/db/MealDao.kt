@@ -11,8 +11,8 @@ import daniel.brian.fooddeliveryapp.pojo.Meal
 @Dao // it's a design pattern used to separate data access logic from business logic
 interface MealDao {
     // This function updates and inserts into the database incase there is a conflict
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(meal: Meal)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(meal: Meal)
 
     @Delete
     suspend fun delete(meal: Meal)

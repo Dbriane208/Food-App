@@ -19,7 +19,7 @@ import retrofit2.Response
 import timber.log.Timber
 
 class HomeViewModel(
-   private val mealDataBase: MealDataBase,
+    private val mealDataBase: MealDataBase,
 ) : ViewModel() {
     private var randomMealLiveData = MutableLiveData<Meal>()
     private var popularItemsLiveData = MutableLiveData<List<MealsByCategoryList>>()
@@ -39,6 +39,7 @@ class HomeViewModel(
                     return
                 }
             }
+
             override fun onFailure(call: Call<MealList>, t: Throwable) {
                 Timber.tag("HomeFragment").d(t.message.toString())
             }
@@ -46,24 +47,23 @@ class HomeViewModel(
     }
 
     fun getPopularItems() {
-        RetrofitInstance.mealApi.getPopularItems("Seafood").enqueue(object : Callback<MealsByCategory> {
-            override fun onResponse(call: Call<MealsByCategory>, response: Response<MealsByCategory>) {
-                if (response.body() != null) {
-                    popularItemsLiveData.value = response.body()!!.meals
-                } else {
-                    return
+        RetrofitInstance.mealApi.getPopularItems("Seafood")
+            .enqueue(object : Callback<MealsByCategory> {
+                override fun onResponse(
+                    call: Call<MealsByCategory>,
+                    response: Response<MealsByCategory>,
+                ) {
+                    if (response.body() != null) {
+                        popularItemsLiveData.value = response.body()!!.meals
+                    } else {
+                        return
+                    }
                 }
-            }
-            override fun onFailure(call: Call<MealsByCategory>, t: Throwable) {
-                Timber.tag("HomeFragment").d(t.message.toString())
-            }
-        })
-    }
 
-    fun deleteMeal(meal: Meal){
-        viewModelScope.launch {
-            mealDataBase.mealDao().delete(meal)
-        }
+                override fun onFailure(call: Call<MealsByCategory>, t: Throwable) {
+                    Timber.tag("HomeFragment").d(t.message.toString())
+                }
+            })
     }
 
     fun getMealsByCategory() {
@@ -86,14 +86,30 @@ class HomeViewModel(
     fun observeRandomMealLivedata(): LiveData<Meal> {
         return randomMealLiveData
     }
+
     fun observePopularItemsLiveData(): LiveData<List<MealsByCategoryList>> {
         return popularItemsLiveData
     }
+
     fun observeCategoryMealsLiveData(): MutableLiveData<List<Category>> {
         return categoryMealsLiveData
     }
 
     fun observeFavoritesMealsLiveData(): LiveData<List<Meal>> {
         return favoriteMealsLiveData
+    }
+
+    // Coroutine viewModelScope allows the viewModel to automatically close when not in use
+    fun insertMeal(meal: Meal) {
+        viewModelScope.launch {
+            mealDataBase.mealDao().upsert(meal)
+        }
+    }
+
+    // This will help us on deleting the meal when this function is called
+    fun deleteMeal(meal: Meal) {
+        viewModelScope.launch {
+            mealDataBase.mealDao().delete(meal)
+        }
     }
 }

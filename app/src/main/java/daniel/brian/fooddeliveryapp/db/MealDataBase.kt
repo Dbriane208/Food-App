@@ -24,7 +24,7 @@ abstract class MealDataBase : RoomDatabase() {
                 INSTANCE = Room.databaseBuilder(
                     context,
                     MealDataBase::class.java,
-                    "mealXDB",
+                    "mealDB",
                 ).fallbackToDestructiveMigration()
                     .build()
             }
