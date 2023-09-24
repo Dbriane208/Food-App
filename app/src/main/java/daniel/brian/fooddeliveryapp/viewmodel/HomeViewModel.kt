@@ -25,9 +25,15 @@ class HomeViewModel(
     private var popularItemsLiveData = MutableLiveData<List<MealsByCategoryList>>()
     private var categoryMealsLiveData = MutableLiveData<List<Category>>()
     private var favoriteMealsLiveData = mealDataBase.mealDao().getAllMeals()
+    private var searchMealLiveData = MutableLiveData<List<Meal>>()
+    private var randomSavedState: Meal? = null
 
     // makes asynchronous network request to retrieve a random meal using retrofit
     fun getRandomMeal() {
+        randomSavedState?.let { randomMeal ->
+            randomMealLiveData.postValue(randomMeal)
+            return
+        }
         // Callback is used to asynchronously handle requests after a network call
         RetrofitInstance.mealApi.getRandomMeal().enqueue(object : Callback<MealList> {
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
@@ -35,6 +41,7 @@ class HomeViewModel(
                 if (response.body() != null) {
                     val randomMeal: Meal = response.body()!!.meals[0]
                     randomMealLiveData.value = randomMeal
+                    randomSavedState = randomMeal
                 } else {
                     return
                 }
@@ -69,15 +76,29 @@ class HomeViewModel(
     fun getMealsByCategory() {
         RetrofitInstance.mealApi.getCategories().enqueue(object : Callback<CategoryList> {
             override fun onResponse(call: Call<CategoryList>, response: Response<CategoryList>) {
-                if (response.body() != null) {
-                    categoryMealsLiveData.value = response.body()!!.categories
-                } else {
-                    return
+                val categoryMeal = response.body()?.categories
+                categoryMeal?.let {
+                    categoryMealsLiveData.postValue(it)
                 }
             }
 
             override fun onFailure(call: Call<CategoryList>, t: Throwable) {
                 Timber.tag("HomeFragment").e(t.message.toString())
+            }
+        })
+    }
+
+    fun searchMeal(search: String) {
+        RetrofitInstance.mealApi.searchMeals(search).enqueue(object : Callback<MealList> {
+            override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
+                val meal = response.body()?.meals
+                meal?.let {
+                    searchMealLiveData.postValue(it)
+                }
+            }
+
+            override fun onFailure(call: Call<MealList>, t: Throwable) {
+                Timber.e("HomeFragment", t.message.toString())
             }
         })
     }
@@ -97,6 +118,10 @@ class HomeViewModel(
 
     fun observeFavoritesMealsLiveData(): LiveData<List<Meal>> {
         return favoriteMealsLiveData
+    }
+
+    fun observeSearchedMealLiveData(): MutableLiveData<List<Meal>> {
+        return searchMealLiveData
     }
 
     // Coroutine viewModelScope allows the viewModel to automatically close when not in use
