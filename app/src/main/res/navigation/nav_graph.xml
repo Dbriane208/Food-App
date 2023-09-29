@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="daniel.brian.fooddeliveryapp.fragments.HomeFragment"
+        android:name="daniel.brian.fooddeliveryapp.ui.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,22 +16,22 @@
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="daniel.brian.fooddeliveryapp.fragments.FavoritesFragment"
+        android:name="daniel.brian.fooddeliveryapp.ui.fragments.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/addToCartFragment"
-        android:name="daniel.brian.fooddeliveryapp.fragments.AddToCartFragment"
+        android:name="daniel.brian.fooddeliveryapp.ui.fragments.AddToCartFragment"
         android:label="fragment_add_to_cart"
         tools:layout="@layout/fragment_add_to_cart" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="daniel.brian.fooddeliveryapp.fragments.UserProfileFragment"
+        android:name="daniel.brian.fooddeliveryapp.ui.fragments.UserProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_userprofile" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="daniel.brian.fooddeliveryapp.fragments.SearchFragment"
+        android:name="daniel.brian.fooddeliveryapp.ui.fragments.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
 </navigation>

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:background="#4a309e"
-    tools:context=".activities.MealCategory">
+    tools:context=".ui.activities.MealCategory">
 
     <LinearLayout
         android:id="@+id/imageMealHolderLayout"
