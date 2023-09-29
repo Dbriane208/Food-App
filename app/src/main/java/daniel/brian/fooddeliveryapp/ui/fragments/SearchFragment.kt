@@ -9,11 +9,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import daniel.brian.fooddeliveryapp.data.repository.Result
+import daniel.brian.fooddeliveryapp.databinding.FragmentSearchBinding
 import daniel.brian.fooddeliveryapp.ui.activities.MainActivity
 import daniel.brian.fooddeliveryapp.ui.activities.MealCategory
 import daniel.brian.fooddeliveryapp.ui.adapters.FavoriteMealsAdapter
-import daniel.brian.fooddeliveryapp.databinding.FragmentSearchBinding
 import daniel.brian.fooddeliveryapp.ui.viewmodel.HomeViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -82,13 +81,7 @@ class SearchFragment : Fragment() {
         homeMvvm.observeSearchedMealLiveData().observe(
             viewLifecycleOwner,
         ) { mealList ->
-            when(mealList){
-                is Result.Error -> TODO()
-                Result.Loading -> TODO()
-                is Result.Success -> {
-                    searchMealAdapter.differ.submitList(mealList.data)
-                }
-            }
+            searchMealAdapter.differ.submitList(mealList)
         }
     }
 

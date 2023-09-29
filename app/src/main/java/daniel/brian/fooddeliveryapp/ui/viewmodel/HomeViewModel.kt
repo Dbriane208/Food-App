@@ -6,16 +6,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import daniel.brian.fooddeliveryapp.data.dtos.Category
 import daniel.brian.fooddeliveryapp.data.dtos.Meal
+import daniel.brian.fooddeliveryapp.data.dtos.MealList
 import daniel.brian.fooddeliveryapp.data.dtos.MealsByCategoryList
+import daniel.brian.fooddeliveryapp.data.remote.retrofit.RetrofitInstance
 import daniel.brian.fooddeliveryapp.data.repository.GetMealsRepository
 import daniel.brian.fooddeliveryapp.data.repository.Result
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
 
 class HomeViewModel(
     private val repository: GetMealsRepository,
 ) : ViewModel() {
     private var favoriteMealsLiveData = repository.getFavouriteMeals()
-    private var searchMealLiveData = MutableLiveData<Result<List<Meal>>>()
+    private var searchMealLiveData = MutableLiveData<List<Meal>>()
     var randomSavedState: Meal? = null
         private set
 
@@ -36,15 +42,26 @@ class HomeViewModel(
         return repository.getMealsByCategory()
     }
 
-    fun searchMeal(search: String): LiveData<Result<List<Meal>>> {
-        return repository.searchMeals(search)
+    fun searchMeal(search: String) {
+        RetrofitInstance.mealApi.searchMeals(search).enqueue(object : Callback<MealList> {
+            override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
+                val meal = response.body()?.meals
+                meal?.let {
+                    searchMealLiveData.postValue(it)
+                }
+            }
+
+            override fun onFailure(call: Call<MealList>, t: Throwable) {
+                Timber.tag("HomeFragment").e(t.message.toString())
+            }
+        })
     }
 
     fun observeFavoritesMealsLiveData(): LiveData<List<Meal>> {
         return favoriteMealsLiveData
     }
 
-    fun observeSearchedMealLiveData(): MutableLiveData<Result<List<Meal>>> {
+    fun observeSearchedMealLiveData(): MutableLiveData<List<Meal>> {
         return searchMealLiveData
     }
 
