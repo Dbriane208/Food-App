@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import daniel.brian.fooddeliveryapp.databinding.OrdinaryDrinksBinding
 import daniel.brian.fooddeliveryapp.data.dtos.Drink
+import daniel.brian.fooddeliveryapp.databinding.OrdinaryDrinksBinding
 
 class OrdinaryDrinksAdapter :
     RecyclerView.Adapter<OrdinaryDrinksAdapter.OrdinaryDrinksViewHolder>() {

@@ -133,10 +133,7 @@ class HomeFragment : Fragment() {
                     .into(binding.promotionMeal)
             } else {
                 when (result) {
-                    is Result.Error -> {
-                        // TODO: Show an error
-                    }
-
+                    is Result.Error -> Unit
                     is Result.Loading -> {
                         binding.randomMealProgressBar.visibility = ProgressBar.VISIBLE
                     }
@@ -163,7 +160,10 @@ class HomeFragment : Fragment() {
         ) { result ->
             when (result) {
                 is Result.Error -> Unit
-                is Result.Loading -> Unit
+                is Result.Loading -> {
+                    binding.randomMealProgressBar.visibility = ProgressBar.VISIBLE
+                }
+
                 is Result.Success -> {
                     popularItemsAdapter.setMeals(mealsList = result.data as ArrayList<MealsByCategoryList>)
                 }
