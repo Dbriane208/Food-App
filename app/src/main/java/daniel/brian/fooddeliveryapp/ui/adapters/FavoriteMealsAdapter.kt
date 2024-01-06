@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import daniel.brian.fooddeliveryapp.databinding.FavoritesCategoryViewsBinding
 import daniel.brian.fooddeliveryapp.data.dtos.Meal
+import daniel.brian.fooddeliveryapp.databinding.FavoritesCategoryViewsBinding
 import daniel.brian.fooddeliveryapp.util.shortenName
 
 class FavoriteMealsAdapter :

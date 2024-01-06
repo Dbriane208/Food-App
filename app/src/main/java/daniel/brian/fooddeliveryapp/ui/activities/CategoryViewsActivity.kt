@@ -1,12 +1,12 @@
 package daniel.brian.fooddeliveryapp.ui.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import daniel.brian.fooddeliveryapp.ui.adapters.CategoryListsAdapter
 import daniel.brian.fooddeliveryapp.databinding.ActivityCategoryViewsBinding
+import daniel.brian.fooddeliveryapp.ui.adapters.CategoryListsAdapter
 import daniel.brian.fooddeliveryapp.ui.fragments.HomeFragment
 import daniel.brian.fooddeliveryapp.ui.viewmodel.CategoriesListViewModel
 
@@ -15,8 +15,8 @@ class CategoryViewsActivity : AppCompatActivity() {
     private lateinit var categoriesListViewModel: CategoriesListViewModel
     private lateinit var categoryListsAdapter: CategoryListsAdapter
 
-    //this will help in passing the meal id and name of the meal that we will click to the next activity
-    companion object{
+    // this will help in passing the meal id and name of the meal that we will click to the next activity
+    companion object {
         const val MEAL_ID = "daniel.brian.fooddeliveryapp.fragments.idMeal"
         const val MEAL_NAME = "daniel.brian.fooddeliveryapp.fragments.nameMeal"
         const val MEAL_THUMB = "daniel.brian.fooddeliveryapp.fragments.thumbNail"
@@ -37,16 +37,16 @@ class CategoryViewsActivity : AppCompatActivity() {
         categoriesListViewModel.getMealsByCategory(intent.getStringExtra(HomeFragment.CATEGORY_NAME)!!)
 
         categoriesListViewModel.observeMealsLiveData().observe(this) { mealsList ->
-                categoryListsAdapter.setMealsList(mealsList)
+            categoryListsAdapter.setMealsList(mealsList)
         }
     }
 
     private fun categoryListItemOnclick() {
         categoryListsAdapter.onItemClick = { meal ->
             val intent = Intent(this, MealCategory::class.java)
-            intent.putExtra(MEAL_ID,meal.idMeal)
-            intent.putExtra(MEAL_NAME,meal.strMeal)
-            intent.putExtra(MEAL_THUMB,meal.strMealThumb)
+            intent.putExtra(MEAL_ID, meal.idMeal)
+            intent.putExtra(MEAL_NAME, meal.strMeal)
+            intent.putExtra(MEAL_THUMB, meal.strMealThumb)
             startActivity(intent)
         }
     }
@@ -55,7 +55,7 @@ class CategoryViewsActivity : AppCompatActivity() {
         categoryListsAdapter = CategoryListsAdapter()
 
         binding.CategoryViewsHolder.apply {
-            layoutManager = GridLayoutManager(context,4,GridLayoutManager.VERTICAL,false)
+            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
             adapter = categoryListsAdapter
         }
     }

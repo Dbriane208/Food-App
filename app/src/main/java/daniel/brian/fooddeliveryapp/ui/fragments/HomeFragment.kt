@@ -163,7 +163,6 @@ class HomeFragment : Fragment() {
                 is Result.Loading -> {
                     binding.randomMealProgressBar.visibility = ProgressBar.VISIBLE
                 }
-
                 is Result.Success -> {
                     popularItemsAdapter.setMeals(mealsList = result.data as ArrayList<MealsByCategoryList>)
                 }
@@ -180,7 +179,6 @@ class HomeFragment : Fragment() {
                 is Result.Loading -> {
                     binding.randomMealProgressBar.visibility = ProgressBar.VISIBLE
                 }
-
                 is Result.Success -> {
                     categoryMealsAdapter.setCategoryMeals(categoryMealsList = result.data as ArrayList<Category>)
                 }

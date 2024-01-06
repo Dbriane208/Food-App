@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import daniel.brian.fooddeliveryapp.databinding.FragmentFavoritesBinding
 import daniel.brian.fooddeliveryapp.ui.activities.MainActivity
 import daniel.brian.fooddeliveryapp.ui.activities.MealCategory
 import daniel.brian.fooddeliveryapp.ui.adapters.FavoriteMealsAdapter
-import daniel.brian.fooddeliveryapp.databinding.FragmentFavoritesBinding
 import daniel.brian.fooddeliveryapp.ui.viewmodel.HomeViewModel
 
 class FavoritesFragment : Fragment() {

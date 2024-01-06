@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import daniel.brian.fooddeliveryapp.databinding.CategoryViewsBinding
 import daniel.brian.fooddeliveryapp.data.dtos.MealsByCategoryList
+import daniel.brian.fooddeliveryapp.databinding.CategoryViewsBinding
 import daniel.brian.fooddeliveryapp.util.shortenName
 
 class CategoryListsAdapter : RecyclerView.Adapter<CategoryListsAdapter.CategoryListViewHolder>() {
