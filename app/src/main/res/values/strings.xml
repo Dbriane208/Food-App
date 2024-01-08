@@ -5,4 +5,11 @@
     <string name="fname">Chicken noodles</string>
     <string name="price">Ksh 500</string>
     <string name="itemCount">1</string>
+    <string name="items">2 Items in the Cart</string>
+    <string name="order">Order Instructions</string>
+    <string name="hint">Make your order unique</string>
+    <string name="total">Total:</string>
+    <string name="checkout">checkout</string>
+    <string name="out">Checkout</string>
+    <string name="back">Back to Menu</string>
 </resources>
