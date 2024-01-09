@@ -25,4 +25,11 @@ class MealDetailsViewModel(
             repository.insertMeal(meal)
         }
     }
+
+    //inserting function to the database
+    fun addItemToCart(meal: Meal){
+        viewModelScope.launch {
+            repository.addItemToCart(meal)
+        }
+    }
 }

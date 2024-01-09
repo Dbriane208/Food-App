@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import daniel.brian.fooddeliveryapp.data.dtos.Drink
 import daniel.brian.fooddeliveryapp.data.dtos.OrdinaryDrinks
 import daniel.brian.fooddeliveryapp.data.local.db.MealDataBase
+import daniel.brian.fooddeliveryapp.data.local.db.CartDatabase
 import daniel.brian.fooddeliveryapp.data.remote.retrofit.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,6 +14,7 @@ import timber.log.Timber
 
 class GetDrinkRepository(
     private var mealDataBase: MealDataBase,
+    private var cartDB: CartDatabase
 ) {
     fun getOrdinaryDrink(): LiveData<Result<List<Drink>>> {
         val ordinaryDrinksLiveData = MutableLiveData<Result<List<Drink>>>()

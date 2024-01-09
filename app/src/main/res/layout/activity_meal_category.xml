@@ -180,6 +180,7 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <Button
+            android:id="@+id/addToCart"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="Add to Cart"
