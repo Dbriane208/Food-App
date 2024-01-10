@@ -22,6 +22,7 @@ class HomeViewModel(
 ) : ViewModel() {
     private var favoriteMealsLiveData = repository.getFavouriteMeals()
     private var searchMealLiveData = MutableLiveData<List<Meal>>()
+
     var randomSavedState: Meal? = null
         private set
 

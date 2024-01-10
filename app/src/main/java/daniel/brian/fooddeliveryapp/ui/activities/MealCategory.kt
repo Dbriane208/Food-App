@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import daniel.brian.fooddeliveryapp.data.dtos.Drink
 import daniel.brian.fooddeliveryapp.data.dtos.Meal
 import daniel.brian.fooddeliveryapp.data.local.db.MealDataBase
-import daniel.brian.fooddeliveryapp.data.local.db.CartDatabase
 import daniel.brian.fooddeliveryapp.data.repository.GetDrinkRepository
 import daniel.brian.fooddeliveryapp.data.repository.GetMealDetailsRepository
 import daniel.brian.fooddeliveryapp.data.repository.GetMealsRepository
@@ -48,9 +47,8 @@ class MealCategory : AppCompatActivity() {
         setContentView(view)
 
         val mealDataBase = MealDataBase.getInstance(this)
-        val cartDatabase = CartDatabase.getInstance(this)
-        val repository = GetMealsRepository(mealDataBase,cartDatabase)
-        val detailsRepo = GetMealDetailsRepository(mealDataBase,cartDatabase)
+        val repository = GetMealsRepository(mealDataBase)
+        val detailsRepo = GetMealDetailsRepository(mealDataBase)
         val mealDetailsViewModelFactory = MealDetailsViewModelFactory(repository, detailsRepo)
 
         getMealInformation()
@@ -62,7 +60,7 @@ class MealCategory : AppCompatActivity() {
         onClickFavoriteMeal()
         addItemsToCart()
 
-        val drinksRepository = GetDrinkRepository(mealDataBase,cartDatabase)
+        val drinksRepository = GetDrinkRepository(mealDataBase)
         val drinkViewModelFactory = DrinksViewModelFactory(drinksRepository)
 
         drinksMvvm = ViewModelProvider(this, drinkViewModelFactory)[DrinksViewModel::class.java]
@@ -81,7 +79,7 @@ class MealCategory : AppCompatActivity() {
     private fun addItemsToCart() {
         binding.addToCart.setOnClickListener{
             mealToSave?.let {
-                mealMvvm.addItemToCart(it)
+                mealMvvm.insertMeal(it)
                 Toast.makeText(this,"Meal Added to Cart Successfully",Toast.LENGTH_LONG).show()
             }
         }

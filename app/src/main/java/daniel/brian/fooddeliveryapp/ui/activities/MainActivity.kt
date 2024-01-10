@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import daniel.brian.fooddeliveryapp.R
-import daniel.brian.fooddeliveryapp.data.local.db.CartDatabase
 import daniel.brian.fooddeliveryapp.data.local.db.MealDataBase
 import daniel.brian.fooddeliveryapp.data.repository.GetMealsRepository
 import daniel.brian.fooddeliveryapp.databinding.ActivityMainBinding
@@ -21,8 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     val viewModel: HomeViewModel by lazy {
         val mealDataBase = MealDataBase.getInstance(this)
-        val cartDatabase = CartDatabase.getInstance(this)
-        val repository = GetMealsRepository(mealDataBase,cartDatabase)
+        val repository = GetMealsRepository(mealDataBase)
         val homeViewModelFactory = HomeViewModelFactory(repository)
         ViewModelProvider(this, homeViewModelFactory)[HomeViewModel::class.java]
     }

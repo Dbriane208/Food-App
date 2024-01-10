@@ -9,7 +9,6 @@ import daniel.brian.fooddeliveryapp.data.dtos.MealList
 import daniel.brian.fooddeliveryapp.data.dtos.MealsByCategory
 import daniel.brian.fooddeliveryapp.data.dtos.MealsByCategoryList
 import daniel.brian.fooddeliveryapp.data.local.db.MealDataBase
-import daniel.brian.fooddeliveryapp.data.local.db.CartDatabase
 import daniel.brian.fooddeliveryapp.data.remote.retrofit.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,7 +17,6 @@ import timber.log.Timber
 
 class GetMealsRepository(
     private val database: MealDataBase,
-    private val cartDB: CartDatabase
 ) {
 
     fun getRandomMeal(): LiveData<Result<Meal>> {
@@ -112,19 +110,6 @@ class GetMealsRepository(
 
     suspend fun deleteMeal(meal: Meal) {
         database.mealDao().delete(meal)
-    }
-
-    // functions from the cartDatabase
-    fun getCartProducts(): LiveData<List<Meal>>{
-        return cartDB.cartDao().getCartItems()
-    }
-
-    suspend fun addItemToCart(meal: Meal){
-        cartDB.cartDao().upsert(meal)
-    }
-
-    suspend fun deleteItemFromCart(meal: Meal){
-        return cartDB.cartDao().delete(meal)
     }
 
 }

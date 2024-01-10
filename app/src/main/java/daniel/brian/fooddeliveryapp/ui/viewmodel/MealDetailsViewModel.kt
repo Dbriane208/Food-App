@@ -26,10 +26,10 @@ class MealDetailsViewModel(
         }
     }
 
-    //inserting function to the database
-    fun addItemToCart(meal: Meal){
-        viewModelScope.launch {
-            repository.addItemToCart(meal)
-        }
-    }
+//    //inserting function to the database
+//    fun addItemToCart(meal: Meal){
+//        viewModelScope.launch {
+//            repository.addItemToCart(meal)
+//        }
+//    }
 }
