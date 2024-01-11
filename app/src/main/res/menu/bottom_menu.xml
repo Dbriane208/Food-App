@@ -8,22 +8,18 @@
         android:icon="@drawable/ic_home"
         tools:ignore="HardcodedText">
     </item>
+
     <item
         android:id="@+id/favoritesFragment"
         android:title="Favorites"
         android:icon="@drawable/ic_favorites"
         tools:ignore="HardcodedText">
     </item>
+
     <item
         android:id="@+id/addToCartFragment"
         android:title="Shopping Cart"
         android:icon="@drawable/ic_addtocart"
-        tools:ignore="HardcodedText">
-    </item>
-    <item
-        android:id="@+id/profileFragment"
-        android:title="User Profile"
-        android:icon="@drawable/ic_userprofile"
         tools:ignore="HardcodedText">
     </item>
 
