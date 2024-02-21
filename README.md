@@ -1,4 +1,4 @@
-# FoodDeliveryApp! 🍹🍸
+# Food-App! 🍹🍸
 
 An Android app built with Views consuming [COCKTAIL](https://www.thecocktaildb.com/) and the [MEAL](https://www.themealdb.com/) APIs to help ordering food and drinks. The app basically demonstrates the use of Room database, the MVVM architecture and how to consume a RESTFUL api and handle the responses by displaying them in the UI.
 
